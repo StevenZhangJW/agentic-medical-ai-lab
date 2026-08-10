@@ -1,0 +1,25 @@
+{
+  "description": "Multi-channel brain MRI with expert tumour annotations.",
+  "modality": {
+    "0": "FLAIR",
+    "1": "T1w",
+    "2": "T1-Gd",
+    "3": "T2w"
+  },
+  "labels": {
+    "0": "background",
+    "1": "oedema",
+    "2": "non-enhancing core",
+    "3": "enhancing tumour"
+  },
+  "target": "binary whole-lesion mask = any label > 0",
+  "geometry": "240 x 240 x 155, 1 mm isotropic, skull-stripped, co-registered",
+  "licence": "CC-BY-SA 4.0 - source, citation and full attribution published with the course material after the lab",
+  "name": "Brain tumour MRI - training set",
+  "n_cases": 60,
+  "tiers": {
+    "tiny": 15,
+    "standard": 60,
+    "full": 424
+  }
+}

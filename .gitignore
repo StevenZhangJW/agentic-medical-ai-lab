@@ -1,0 +1,15 @@
+.venv/
+__pycache__/
+*.pyc
+outputs/
+.DS_Store
+.ipynb_checkpoints/
+instructor_only/
+
+# handed out during the lab, never shipped in the repo
+exercises/
+~$*
+
+# held back until the lab is over — restore this file (and delete this line)
+# with the rest of the course material afterwards
+ATTRIBUTION.md

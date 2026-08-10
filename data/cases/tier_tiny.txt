@@ -1,0 +1,17 @@
+# TINY (15) - develop here: fast iteration on a slow laptop.
+# Big effects (normalisation, thresholding) reproduce fully on these.
+case_002
+case_007
+case_010
+case_013
+case_014
+case_016
+case_023
+case_026
+case_030
+case_037
+case_039
+case_041
+case_054
+case_057
+case_059
