@@ -11,42 +11,48 @@ You do not need to be a programmer. You need to be a good scientist.
 
 ---
 
-## Setup — do this *before* Monday
+## Setup — we do this together on Monday morning
 
-**1. Install Python 3.11 or 3.12** from [python.org](https://www.python.org/downloads/)
-   *(Windows: tick **"Add Python to PATH"** during install. Avoid the Microsoft Store version.)*
+**There is nothing to prepare in advance.** Bring a laptop, and make sure you
+can log in to a Claude account that includes Claude Code — **Pro, Max or Team**;
+a free claude.ai login is not enough. We set everything up in the first session.
 
-**2. Install Claude Code** — see [code.claude.com/docs](https://code.claude.com/docs/en/quickstart).
-   *(Windows: also install [Git for Windows](https://git-scm.com/download/win) — it gives Claude Code a proper shell.)*
+When we start, in this order:
 
-**3. Get this repository and check your setup**
+**1. Install Claude Code and log in.**
+[code.claude.com/docs](https://code.claude.com/docs/en/quickstart) has the
+one-line installer for each platform.
+*(Windows: also install [Git for Windows](https://git-scm.com/download/win) —
+it gives Claude Code a proper shell.)*
+
+**2. Get Python 3.11 or 3.12.**
+Either install it yourself from [python.org](https://www.python.org/downloads/),
+or simply ask Claude Code to do it for you:
+
+> *Check whether I have Python 3.11 or 3.12. If not, install it.*
+
+**3. Get this repository.**
+Either run:
 
 ```bash
-git clone https://github.com/ORG/agentic-medical-ai-lab
+git clone https://github.com/kimmouridsen-cloud/agentic-medical-ai-lab
 cd agentic-medical-ai-lab
-python -m venv .venv
-```
-
-Activate the environment:
-
-| | |
-|---|---|
-| **macOS / Linux** | `source .venv/bin/activate` |
-| **Windows** | `.venv\Scripts\activate` |
-
-Then:
-
-```bash
-python -m pip install -r requirements.txt
 python verify.py
 ```
 
-`verify.py` prints a checklist. **If it says ALL GOOD, you are ready.**
-If not, it tells you exactly what to fix.
+or, if that line means nothing to you, ask Claude Code:
 
-> **Stuck?** Don't lose your morning to it. Click
-> **Code → Codespaces → Create codespace** on GitHub — you get the whole
-> environment, data included, in the browser. Nothing is lost.
+> *Clone https://github.com/kimmouridsen-cloud/agentic-medical-ai-lab, then run
+> verify.py inside it and fix whatever it complains about.*
+
+`verify.py` prints a checklist and ends with **ALL GOOD** when you are ready.
+If it reports something missing, hand the output to Claude Code and let it sort
+it out — installing packages is its job, not yours.
+
+> **Stuck for 15 minutes?** Don't lose the morning to it. On GitHub click
+> **Code → Codespaces → Create codespace** — the whole environment, data
+> included, in your browser. You lose nothing. *(A free GitHub account is all
+> this needs.)*
 
 ---
 
@@ -80,17 +86,18 @@ Volumes are `240 × 240 × 155`, 1 mm isotropic, skull-stripped and
 co-registered. Labels are 1 = oedema, 2 = non-enhancing core, 3 = enhancing
 tumour; we treat **any label > 0 as "tumour"**.
 
-### Work in two tiers
+### Which cases to work on
 
-| Tier | Cases | Use it for |
+| Cohort | Cases | |
 |---|---|---|
-| **Tiny** — `tier_tiny.txt` | 15 | **Developing.** Runs in seconds even on a slow laptop. Every large effect — normalisation, thresholding — reproduces fully. |
-| **Standard** — `tier_standard.txt` | 60 | **Reporting.** Quote your final numbers on all 60. Subtle effects (e.g. multi-channel vs single-channel) only become statistically distinguishable here. |
+| **Standard** — `tier_standard.txt` | 60 | **Use this one.** Develop on it and report on it. |
+| **Tiny** — `tier_tiny.txt` | 15 | Only if your laptop is too slow to work on all 60. |
 
-Develop on the tiny set, report on the standard set. That is ordinary practice —
-and a lesson in itself: on 15 cases you cannot tell a four-channel model from a
-single-channel one (p = 0.28); on 60 you can (p = 0.004). Your sample size
-decides what you are entitled to conclude.
+Work on all 60 unless compute forces you down to 15 — and if it does, say so
+whenever you quote a number, because the number depends on it. Sample size
+decides what you are entitled to conclude: on 15 cases you cannot tell a
+four-channel model from a single-channel one (p = 0.28); on 60 you can
+(p = 0.004).
 
 A larger 424-case set exists for anyone who wants to push further — ask.
 
