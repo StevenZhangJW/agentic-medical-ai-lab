@@ -9,8 +9,9 @@ whether the result can be believed.
 
 You do not need to be a programmer. You need to be a good scientist.
 
-![One case from the dataset: FLAIR, T1w, T1-Gd and T2w of the same axial slice,
-with the expert tumour mask outlined in red](docs/example_case.png)
+<img src="docs/example_case.png" width="540"
+     alt="One case from the dataset: FLAIR, T1w, T1-Gd and T2w of the same axial
+     slice, with the expert tumour mask outlined in red">
 
 ---
 
