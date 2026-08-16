@@ -1,4 +1,4 @@
-# TINY (15) - develop here: fast iteration on a slow laptop.
+# TINY (15) - fallback only, if your laptop cannot handle all 60.
 # Big effects (normalisation, thresholding) reproduce fully on these.
 case_002
 case_007

@@ -9,13 +9,17 @@ whether the result can be believed.
 
 You do not need to be a programmer. You need to be a good scientist.
 
+![One case from the dataset: FLAIR, T1w, T1-Gd and T2w of the same axial slice,
+with the expert tumour mask outlined in red](docs/example_case.png)
+
 ---
 
 ## Setup — we do this together on Monday morning
 
 **There is nothing to prepare in advance.** Bring a laptop, and make sure you
 can log in to a Claude account that includes Claude Code — **Pro, Max or Team**;
-a free claude.ai login is not enough. We set everything up in the first session.
+a free claude.ai login is not enough. (Prefer a different coding agent, or want
+a free one? See step 1.) We set everything up in the first session.
 
 When we start, in this order:
 
@@ -24,6 +28,11 @@ When we start, in this order:
 one-line installer for each platform.
 *(Windows: also install [Git for Windows](https://git-scm.com/download/win) —
 it gives Claude Code a proper shell.)*
+
+> **Another agent is fine.** We developed and tested the exercises with Claude
+> Code, so that is what we recommend and what we can help you with fastest. But
+> nothing here depends on it — use any coding agent you like, such as OpenAI's
+> Codex, or [OpenCode](https://opencode.ai) if you want a free alternative.
 
 **2. Get Python 3.11 or 3.12.**
 Either install it yourself from [python.org](https://www.python.org/downloads/),
@@ -95,9 +104,7 @@ tumour; we treat **any label > 0 as "tumour"**.
 
 Work on all 60 unless compute forces you down to 15 — and if it does, say so
 whenever you quote a number, because the number depends on it. Sample size
-decides what you are entitled to conclude: on 15 cases you cannot tell a
-four-channel model from a single-channel one (p = 0.28); on 60 you can
-(p = 0.004).
+decides what you are entitled to conclude.
 
 A larger 424-case set exists for anyone who wants to push further — ask.
 

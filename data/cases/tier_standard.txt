@@ -1,4 +1,4 @@
-# STANDARD (60) - report here: all findings hold, including the subtle ones.
+# STANDARD (60) - use this one: develop here and report here.
 case_001
 case_002
 case_003
