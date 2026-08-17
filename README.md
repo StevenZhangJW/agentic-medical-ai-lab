@@ -70,6 +70,7 @@ it out — installing packages is its job, not yours.
 
 ```
 data/cases/       60 cases · 4 MRI channels · expert tumour masks
+data/eval/        60 further cases, images only — the final validation set
 exercises.pdf     the seven exercises, E1–E7 — one page each
 verify.py         environment check — run this first
 ```
@@ -107,6 +108,42 @@ whenever you quote a number, because the number depends on it. Sample size
 decides what you are entitled to conclude.
 
 A larger 424-case set exists for anyone who wants to push further — ask.
+
+---
+
+## The final validation set
+
+`data/eval/` holds **60 further cases** (`eval_001` … `eval_060`) in exactly the
+format you have been working with: `240 × 240 × 155 × 4`, the same four channels
+in the same order.
+
+**There are no masks for these.** You cannot score yourself on them — that is
+the point. You predict, we score.
+
+When you are done building, take **your best model, exactly as it stands**, and
+run it on all 60. Do not tune anything on these cases: the moment you use them
+to make a choice, they stop being a test set and the number stops meaning
+anything.
+
+Save one binary mask per case:
+
+- **One file per case, named after the case:** `eval_001.nii.gz` … `eval_060.nii.gz`
+- **NIfTI** (`.nii.gz`), the same format the images come in
+- **Same shape as the input volume:** `240 × 240 × 155` — one value per voxel,
+  no channel dimension
+- **Binary:** any non-zero value means tumour, zero means not tumour. Whole
+  lesion, exactly as in the exercises — do not try to separate oedema from core
+- Keep the geometry of the input: write the mask with the affine of the volume
+  you read, and do not resize, crop or reorient. If you predicted at a smaller
+  resolution, resample back up before saving
+- Predict for **all 60**. A case you leave out counts as a miss
+
+Ask your agent to write that loop — it is the loop you already used to score
+yourself on the training cases, pointed at a different folder and writing files
+instead of numbers.
+
+**Tuesday morning you will get instructions for sharing your masks with the
+TAs**, along with how they are scored. Have the 60 files ready before then.
 
 The cases carry neutral identifiers on purpose: for these two days we want you
 reasoning from the images in front of you, not from published results for a
