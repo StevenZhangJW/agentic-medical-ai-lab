@@ -115,6 +115,18 @@ named benchmark. The source and citation are therefore held back until the end
 of the lab, and published here with the rest of the course material afterwards.
 The data is CC-BY-SA 4.0; code and teaching material are MIT.
 
+### Explore a case
+
+Run the interactive four-channel viewer from the repository root:
+
+```bash
+streamlit run app.py
+```
+
+Choose a case in the sidebar, move through its axial slices with the slider or
+Previous/Next buttons, and toggle the red expert whole-lesion outline. All four
+panels always use the same source slice index.
+
 ---
 
 ## Ground rules for the two days
