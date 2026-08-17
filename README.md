@@ -70,13 +70,12 @@ it out — installing packages is its job, not yours.
 
 ```
 data/cases/       60 cases · 4 MRI channels · expert tumour masks
+exercises.pdf     the seven exercises, E1–E7 — one page each
 verify.py         environment check — run this first
 ```
 
-The exercises are not in this repository — they are handed out during the lab.
-There is no solution code here either, by design. Everything you produce is
-something you build by directing Claude — that is the whole point of the two
-days.
+There is no solution code here, by design. Everything you produce is something
+you build by directing Claude — that is the whole point of the two days.
 
 ---
 
