@@ -78,6 +78,38 @@ There is no solution code here either, by design. Everything you produce is
 something you build by directing Claude — that is the whole point of the two
 days.
 
+## Reproducible 3-D U-Net baseline
+
+`segmentation_pipeline.py` provides a staged, four-channel whole-lesion
+baseline. It uses a fixed seed (`20260818`) and fixed 48/12 holdout, per-channel
+brain-only z-scoring, tumour-aware 96³ patches, lightweight augmentation, a
+moderate 3-D U-Net, Dice + BCE loss, CUDA mixed precision, early stopping, and
+best-checkpoint saving. Run the stages explicitly so the validation threshold
+is selected before—and remains independent of—competition inference:
+
+```bash
+python segmentation_pipeline.py split
+python segmentation_pipeline.py train
+python segmentation_pipeline.py validate
+# Read locked_threshold from artifacts/validation_metrics.json, then:
+python segmentation_pipeline.py train-final
+python segmentation_pipeline.py predict --threshold LOCKED_THRESHOLD \
+  --competition-images data/competition/images
+```
+
+Validation writes full summary/per-case metrics and good, near-median, and poor
+multi-slice colour overlays to `artifacts/`. Prediction preserves each source
+NIfTI geometry, validates that exactly 60 unique cases were processed, and
+writes both binary masks and `submission.csv`. RLE is generated programmatically
+in one-indexed Fortran voxel order; verify that convention against the
+competition-provided helper before submission (no such helper or competition
+cohort is included in this repository).
+
+On a CUDA workstation, expect the single holdout training plus final all-case
+fit to take hours, depending on the GPU. Three-fold cross-validation is
+intentionally not the default because it roughly triples that burden. CPU-only
+training is supported but is unlikely to finish in a practical lab session.
+
 ---
 
 ## The data
