@@ -70,13 +70,16 @@ it out — installing packages is its job, not yours.
 
 ```
 data/cases/       60 cases · 4 MRI channels · expert tumour masks
+data/eval/        60 further cases, images only — the final validation set
+exercises.pdf     the seven exercises, E1–E7 — one page each
+safety_and_regulatory_MDSW.pdf
+                  Tuesday's lecture: safety, risk management and what it
+                  takes to turn a working model into a compliant device
 verify.py         environment check — run this first
 ```
 
-The exercises are not in this repository — they are handed out during the lab.
-There is no solution code here either, by design. Everything you produce is
-something you build by directing Claude — that is the whole point of the two
-days.
+There is no solution code here, by design. Everything you produce is something
+you build by directing Claude — that is the whole point of the two days.
 
 ## Reproducible 3-D U-Net baseline
 
@@ -158,6 +161,52 @@ streamlit run app.py
 Choose a case in the sidebar, move through its axial slices with the slider or
 Previous/Next buttons, and toggle the red expert whole-lesion outline. All four
 panels always use the same source slice index.
+
+---
+
+## The final validation set
+
+`data/eval/` holds **60 further cases** (`eval_001` … `eval_060`) in exactly the
+format you have been working with: `240 × 240 × 155 × 4`, the same four channels
+in the same order.
+
+**There are no masks for these.** You cannot score yourself on them — that is
+the point. You predict, we score.
+
+When you are done building, take **your best model, exactly as it stands**, and
+run it on all 60. Do not tune anything on these cases: the moment you use them
+to make a choice, they stop being a test set and the number stops meaning
+anything.
+
+Save one binary mask per case:
+
+- **One file per case, named after the case:** `eval_001.nii.gz` … `eval_060.nii.gz`
+- **NIfTI** (`.nii.gz`), the same format the images come in
+- **Same shape as the input volume:** `240 × 240 × 155` — one value per voxel,
+  no channel dimension
+- **Binary:** any non-zero value means tumour, zero means not tumour. Whole
+  lesion, exactly as in the exercises — do not try to separate oedema from core
+- Keep the geometry of the input: write the mask with the affine of the volume
+  you read, and do not resize, crop or reorient. If you predicted at a smaller
+  resolution, resample back up before saving
+- Predict for **all 60**. A case you leave out counts as a miss
+
+Ask your agent to write that loop — it is the loop you already used to score
+yourself on the training cases, pointed at a different folder and writing files
+instead of numbers.
+
+## Submitting your predictions
+
+Predictions are scored in our Kaggle competition:
+
+### 👉 [Join the competition](https://www.kaggle.com/t/2cd26de0067a488cb0d1e5e00a3d3b14)
+
+That link is an invitation — open it, accept, and you are in. A free Kaggle
+account is all it takes. The competition page carries the exact submission
+format and the leaderboard, so read it before you start converting anything.
+
+**Tuesday morning we go through submitting together.** Have your 60 masks
+finished before then, and the rest is a five-minute job.
 
 ---
 
