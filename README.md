@@ -109,6 +109,12 @@ decides what you are entitled to conclude.
 
 A larger 424-case set exists for anyone who wants to push further — ask.
 
+The cases carry neutral identifiers on purpose: for these two days we want you
+reasoning from the images in front of you, not from published results for a
+named benchmark. The source and citation are therefore held back until the end
+of the lab, and published here with the rest of the course material afterwards.
+The data is CC-BY-SA 4.0; code and teaching material are MIT.
+
 ---
 
 ## The final validation set
@@ -142,14 +148,18 @@ Ask your agent to write that loop — it is the loop you already used to score
 yourself on the training cases, pointed at a different folder and writing files
 instead of numbers.
 
-**Tuesday morning you will get instructions for sharing your masks with the
-TAs**, along with how they are scored. Have the 60 files ready before then.
+## Submitting your predictions
 
-The cases carry neutral identifiers on purpose: for these two days we want you
-reasoning from the images in front of you, not from published results for a
-named benchmark. The source and citation are therefore held back until the end
-of the lab, and published here with the rest of the course material afterwards.
-The data is CC-BY-SA 4.0; code and teaching material are MIT.
+Predictions are scored in our Kaggle competition:
+
+### 👉 [Join the competition](https://www.kaggle.com/t/2cd26de0067a488cb0d1e5e00a3d3b14)
+
+That link is an invitation — open it, accept, and you are in. A free Kaggle
+account is all it takes. The competition page carries the exact submission
+format and the leaderboard, so read it before you start converting anything.
+
+**Tuesday morning we go through submitting together.** Have your 60 masks
+finished before then, and the rest is a five-minute job.
 
 ---
 
