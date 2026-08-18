@@ -72,6 +72,9 @@ it out — installing packages is its job, not yours.
 data/cases/       60 cases · 4 MRI channels · expert tumour masks
 data/eval/        60 further cases, images only — the final validation set
 exercises.pdf     the seven exercises, E1–E7 — one page each
+safety_and_regulatory_MDSW.pdf
+                  Tuesday's lecture: safety, risk management and what it
+                  takes to turn a working model into a compliant device
 verify.py         environment check — run this first
 ```
 
