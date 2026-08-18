@@ -8,7 +8,6 @@ it is intended as a defensible baseline, not a hyperparameter-search framework.
 from __future__ import annotations
 
 import argparse
-import csv
 import json
 import random
 from dataclasses import asdict, dataclass
@@ -287,6 +286,7 @@ def rle_encode(mask: np.ndarray) -> str:
     pixels = mask.astype(np.uint8).ravel(order="F")
     padded = np.pad(pixels, (1, 1)); changes = np.flatnonzero(padded[1:] != padded[:-1])
     changes[1::2] -= changes[::2]
+    changes[::2] += 1
     return " ".join(map(str, changes))
 
 
@@ -296,12 +296,10 @@ def predict(checkpoint: Path, image_dir: Path, threshold: float, output: Path) -
     for case_id, image_path, _ in case_paths(image_dir):
         image, nii = load_normalized(image_path); probability = sliding_probability(model, image, config.patch_size, device)
         mask = (probability >= threshold).astype(np.uint8)
-        mask_path = output / "masks" / f"{case_id}.nii.gz"; mask_path.parent.mkdir(exist_ok=True)
+        mask_path = output / f"{case_id}.nii.gz"
         nib.save(nib.Nifti1Image(mask, nii.affine, nii.header), mask_path); rows.append((case_id, rle_encode(mask)))
     if len(rows) != 60 or len({row[0] for row in rows}) != 60:
         raise ValueError(f"Expected 60 unique competition cases, found {len(rows)}")
-    with (output / "submission.csv").open("w", newline="") as handle:
-        writer = csv.writer(handle); writer.writerow(("case_id", "mask_rle")); writer.writerows(rows)
 
 
 def main() -> None:
